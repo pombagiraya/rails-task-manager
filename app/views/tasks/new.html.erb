@@ -1,12 +1,18 @@
-<%= form_for(@task) do |f| %>
-  <%= f.label :title %>
-  <%= f.text_field :title %>
+<div class="container w-50" style="margin-top: 48px">
+  <h1>Create a new task:</h1>
+  <%= form_for(@task) do |f| %>
+    <div class="form-group">
+      <%= f.label "Name your task:" %>
+      <%= f.text_field :title, class: 'form-control' %>
+    </div>
 
-  <%= f.label :details %>
-  <%= f.text_field :details %>
+    <div class="form-group">
+      <%= f.label "Describe it or add details:" %>
+      <%= f.text_area :details, class: 'form-control' %>
+    </div>
 
-  <%= f.submit %>
-<% end %>
-
-
-<%= link_to "Back to List", tasks_path %>
+    <%= f.submit class: 'btn btn-primary' %>
+  <% end %>
+  <hr>
+  <p><%= link_to "⬅️ Back to list", tasks_path %></p>
+</div>

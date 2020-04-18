@@ -2,7 +2,7 @@
   <div class="card" style="width: 18rem;">
     <img class="card-img-top" src="https://images.unsplash.com/photo-1506784983877-45594efa4cbe?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2696&q=80" alt="card image task">
     <div class="card-body">
-      <h1 class="card-title">Laundry</h1>
+      <h1 class="card-title"><%= @task.title %></h1>
       <h5 class="card-text">Details:</h5>
       <p class="card-text"><%= @task.details %></p>
       <br>
@@ -13,7 +13,14 @@
           <p><% check_box_tag(@task.title, @task.details, @task.completed) %>
           <%= "#{@task.title} is yet to be completed!" %></p>
     <% end %>
-    <%= button_to "Edit this task", edit_task_path, method: :get, class: "btn btn-outline-secondary"%>
+    <div class="row" style="margin: auto">
+      <div class="col-xs-6" style="margin-right: 8px">
+      <%= button_to "Edit this task", edit_task_path, method: :get, class: "btn btn-outline-secondary"%>
+      </div>
+      <div class="col-xs6" style="margin-right: 8px">
+      <%= button_to "Delete it", task_path(@task), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-outline-secondary"%>
+    </div>
+    </div>
   </div>
    </div>
     <hr>
