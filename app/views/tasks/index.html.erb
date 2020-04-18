@@ -1,9 +1,19 @@
-<h1>My Tasks </h1>
-<h2> <%= link_to 'Add a new task', new_task_path %> </h2>
-<% @tasks.each do |task| %>
-  <h2> <%= task.title %> </h2>
-  <p> <%= task.details %> </p>
-  <div><%= check_box_tag task.completed %> </div>
-  <%= link_to 'Details', task_path(task) %>
-  <%= link_to 'Remove task', task_path(task), method: :delete %>
-<% end %>
+<div class="container w-50">
+    <h1>My Tasks</h1>
+  <% @tasks.each do |task| %>
+    <% if task.completed == true %>
+          <%= check_box_tag(task.title, task.details, true) %>
+    <% else %>
+          <%= check_box_tag(task.title, task.details, task.completed) %>
+    <% end %>
+
+      <%= link_to task.title, task_path(task) %>
+      <%= link_to task_path(task),method: :delete,
+       data: { confirm: "Are you sure?" } do %>
+       <i class="fa fa-trash" aria-hidden="true"></i>
+       <br>
+       <% end %>
+  <% end %>
+  <hr>
+  <p><%= link_to "Add a new task", new_task_path, class: "btn btn-primary" %></p>
+</div>
